@@ -3,11 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	// range
-	numbers := []int{1, 2, 3, 4, 5, 6}
-	// _ is used to ignore index
-	for index, number := range numbers {
-		fmt.Print(index, ") ", number, "\n")
-	}
+	var x = 1
 
+	if x > 2 {
+		fmt.Printf("x is greater than 2")
+	} else {
+		fmt.Printf("condition is false (x > 2)")
+	}
 }

@@ -5,11 +5,20 @@ import (
 )
 
 func main() {
-	// golang map
-	elements := make(map[string]string)
-	elements["O"] = "Oxygen"
-	elements["Ca"] = "Calcium"
-	elements["C"] = "Carbon"
+	// golang store information on map
+	website := map[string]map[string]string{
+		"Google": map[string]string{
+			"name": "Google",
+			"type": "Search",
+			"work": "Search Engine",
+		},
+		"YouTube": map[string]string{
+			"name": "YouTube",
+			"type": "Video",
+			"work": "Video Search Engine",
+		},
+	}
 
-	fmt.Println(elements["C"])
+	fmt.Println(website["Google"]["name"])
+	fmt.Println(website["YouTube"]["work"])
 }

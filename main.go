@@ -1,20 +1,38 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"io/ioutil"
+	"log"
+	"os"
 )
 
-func main() {
-	//read files
-	b, err := ioutil.ReadFile("go.txt")
-
+// read line by line into memory
+// all file contents is stores in lines[]
+func readLines(path string) ([]string, error) {
+	file, err := os.Open(path)
 	if err != nil {
-		fmt.Println(err)
+		return nil, err
 	}
+	defer file.Close()
 
-	string := string(b)
+	var lines []string
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+	return lines, scanner.Err()
+}
 
-	fmt.Println(string)
-
+func main() {
+	// open file for reading
+	// read line by line
+	lines, err := readLines("go.txt")
+	if err != nil {
+		log.Fatalf("readLines: %s", err)
+	}
+	// print file contents
+	for i, line := range lines {
+		fmt.Println(i, line)
+	}
 }

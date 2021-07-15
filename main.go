@@ -3,11 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	var x = 1
+	i := 1
+	max := 20
 
-	if x > 2 {
-		fmt.Printf("x is greater than 2")
-	} else {
-		fmt.Printf("condition is false (x > 2)")
+	//technically go dosent have while
+	//for can be used while in go
+
+	for i < max {
+		fmt.Println(i)
+		i++
 	}
 }

@@ -3,18 +3,12 @@ package main
 import "fmt"
 
 func main() {
-	//pointers
-	// variable
-	var x int = 5
+	/* define a string */
+	mystring := "Hello"
 
-	// create pointer
-	var ipointer *int
-
-	// store the address of x in pointer variable
-	ipointer = &x
-
-	// display info
-	fmt.Printf("Memory address of variable x: %x\n", &x)
-	fmt.Printf("Memory address stored in ipointer variable: %x\n", ipointer)
-	fmt.Printf("Contents of *ipointer variable: %d\n", *ipointer)
+	/* take slice */
+	string1 := mystring[0:2]
+	string2 := mystring[2:5]
+	fmt.Println(string1)
+	fmt.Println(string2)
 }

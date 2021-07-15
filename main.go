@@ -2,17 +2,19 @@ package main
 
 import (
 	"fmt"
-	"os"
+	"io/ioutil"
 )
 
 func main() {
-	//flie exists
-	// if _, err := os.Stat("go.txt"); err == nil {
-	// 	fmt.Println("File exists\n")
-	// } else {
-	// 	fmt.Println("File does not exists\n")
-	// }
-	if _, err := os.Stat("file-exists.file"); os.IsNotExist(err) {
-		fmt.Println("File does not exists")
+	//read files
+	b, err := ioutil.ReadFile("go.txt")
+
+	if err != nil {
+		fmt.Println(err)
 	}
+
+	string := string(b)
+
+	fmt.Println(string)
+
 }

@@ -1,26 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
-	//swtich statement
-
-	switch a := 1; {
-	case a == 1:
-		fmt.Println("The integer was == 1")
-		fallthrough
-	case a == 2:
-		fmt.Println("The integer was == 2")
-
-	case a == 3:
-		fmt.Println("The integer was == 3")
-		fallthrough
-	case a == 4:
-		fmt.Println("The integer was == 4")
-	case a == 5:
-		fmt.Println("The integer was == 5")
-		fallthrough
-	default:
-		fmt.Println("default case")
+	//flie exists
+	// if _, err := os.Stat("go.txt"); err == nil {
+	// 	fmt.Println("File exists\n")
+	// } else {
+	// 	fmt.Println("File does not exists\n")
+	// }
+	if _, err := os.Stat("file-exists.file"); os.IsNotExist(err) {
+		fmt.Println("File does not exists")
 	}
 }

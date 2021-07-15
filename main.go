@@ -2,23 +2,17 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
+	"time"
 )
 
+func random(min int, max int) int {
+	return rand.Intn(max-min) + min
+}
 func main() {
-	// golang store information on map
-	website := map[string]map[string]string{
-		"Google": map[string]string{
-			"name": "Google",
-			"type": "Search",
-			"work": "Search Engine",
-		},
-		"YouTube": map[string]string{
-			"name": "YouTube",
-			"type": "Video",
-			"work": "Video Search Engine",
-		},
-	}
+	// golang random numbers
+	rand.Seed(time.Now().UnixNano())
+	randomNum := random(1, 6)
+	fmt.Println("Random Number: ", randomNum)
 
-	fmt.Println(website["Google"]["name"])
-	fmt.Println(website["YouTube"]["work"])
 }

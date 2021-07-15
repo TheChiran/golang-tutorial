@@ -1,18 +1,24 @@
 package main
 
 import (
-	"os"
+	"fmt"
 )
 
+type House struct {
+	rooms int
+	price int32
+	city  string
+}
+
 func main() {
-	// write files
-	file, err := os.Create("file.txt")
+	// struct
+	var house House
+	house.rooms = 4
+	house.price = 36550
+	house.city = "Dhaka"
 
-	if err != nil {
-		return
-	}
-	var string = "Write file in golang"
+	fmt.Printf("House.rooms = %d \n", house.rooms)
+	fmt.Printf("House.price = %d \n", house.price)
+	fmt.Printf("House.city = %s \n", house.city)
 
-	defer file.Close()
-	file.WriteString(string)
 }

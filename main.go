@@ -2,15 +2,13 @@ package main
 
 import "fmt"
 
-func hello() {
-	fmt.Println("Hello")
-}
-
-func who() {
-	fmt.Println("Go")
+func values() (int, int) {
+	return 2, 4
 }
 
 func main() {
-	defer who()
-	hello()
+	//returning multiple values
+	x, y := values()
+	fmt.Println(x)
+	fmt.Println(y)
 }

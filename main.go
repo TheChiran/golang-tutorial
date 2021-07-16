@@ -2,13 +2,17 @@ package main
 
 import "fmt"
 
-func values() (int, int) {
-	return 2, 4
+func makeSequence() func() int {
+	i := 1
+	return func() int {
+		i += 2
+		return i
+	}
 }
 
 func main() {
-	//returning multiple values
-	x, y := values()
-	fmt.Println(x)
-	fmt.Println(y)
+	sequenceGenerator := makeSequence()
+	fmt.Println(sequenceGenerator())
+	fmt.Println(sequenceGenerator())
+	fmt.Println(sequenceGenerator())
 }

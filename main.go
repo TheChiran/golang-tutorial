@@ -2,17 +2,8 @@ package main
 
 import "fmt"
 
-func makeSequence() func() int {
-	i := 1
-	return func() int {
-		i += 2
-		return i
-	}
-}
-
 func main() {
-	sequenceGenerator := makeSequence()
-	fmt.Println(sequenceGenerator())
-	fmt.Println(sequenceGenerator())
-	fmt.Println(sequenceGenerator())
+	//golang panic - when called, program is stopped like error handling thow
+	panic("Something went wrong")
+	fmt.Println("Golang")
 }

@@ -2,12 +2,21 @@ package main
 
 import "fmt"
 
-func f(msg string) {
-	fmt.Println(msg)
+func f(c chan string) {
+	c <- "f() was here"
+}
+
+func f2(c chan string) {
+	msg := <-c
+	fmt.Println("f2", msg)
 }
 
 func main() {
-	go f("go routine")
-	f("function")
+	//go routiens
+	//channels are a way to communicate with each other
+	var c chan string = make(chan string)
+	go f(c)
+	go f2(c)
+
 	fmt.Scanln()
 }

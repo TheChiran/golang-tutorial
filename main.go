@@ -1,14 +1,13 @@
 package main
 
-import (
-	"errors"
-	"fmt"
-)
+import "fmt"
 
-func do() (int, error) {
-	return -1, errors.New("Something wrong")
+func f(msg string) {
+	fmt.Println(msg)
 }
 
 func main() {
-	fmt.Println(do())
+	go f("go routine")
+	f("function")
+	fmt.Scanln()
 }

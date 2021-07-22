@@ -7,32 +7,19 @@ import (
 
 func f1(c chan string) {
 	for {
-		time.Sleep(1 * time.Second)
-		c <- "1"
-	}
-}
-
-func f2(c chan string) {
-	for {
-		time.Sleep(1 * time.Second)
-		c <- "2"
+		time.Sleep(10 * time.Second)
+		c <- "10 seconds passed"
 	}
 }
 
 func main() {
 	c1 := make(chan string)
-	c2 := make(chan string)
-
 	go f1(c1)
-	go f2(c2)
 
-	for {
-		select {
-		case msg1 := <-c1:
-			fmt.Println(msg1)
-		case msg2 := <-c2:
-			fmt.Println(msg2)
-		}
+	select {
+	case msg1 := <-c1:
+		fmt.Println(msg1)
+	case <-time.After(3 * time.Second):
+		fmt.Println("Timeout!")
 	}
-	fmt.Println("Goroutines finished.")
 }

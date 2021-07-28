@@ -5,16 +5,13 @@ import (
 	"time"
 )
 
-func main() {
-	t1 := time.NewTimer(time.Second)
-	go func() {
-		<-t1.C
-		fmt.Println("Timer expired")
-	}()
-
-	fmt.Scanln()
-	stop := t1.Stop()
-	if stop {
-		fmt.Println("Timer stopped")
+func task() {
+	for range time.Tick(time.Second * 1) {
+		fmt.Println("Tick ")
 	}
+}
+
+func main() {
+	go task()
+	time.Sleep(time.Second * 5)
 }

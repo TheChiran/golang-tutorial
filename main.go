@@ -3,50 +3,26 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"net/http"
-	"os"
 )
 
-type Response struct {
-	TradeID int
-	Price   string
-	Size    string
-	Bid     string
-	Ask     string
-	Volume  string
-	Time    string
+type User struct {
+	Username string
+	Password string
 }
 
-func get_content() {
-	// json data
-	url := "https://api.gdax.com/products/BTC-EUR/ticker"
-
-	res, err := http.Get(url)
-
-	if err != nil {
-		panic(err.Error())
-	}
-
-	body, err := ioutil.ReadAll(res.Body)
-
-	if err != nil {
-		panic(err.Error())
-	}
-
-	var data Response
-
-	// unmarshall
-	json.Unmarshal(body, &data)
-	//fmt.Printf("Results: %v\n", data)
-
-	// print values of the object
-	fmt.Printf("Price: $ %s\n", data.Price)
-	fmt.Printf("Price: $ %s\n", data.Bid)
-	fmt.Printf("Price: $ %s\n", data.Ask)
-
-	os.Exit(0)
-}
 func main() {
-	get_content()
+	users := []User{
+		{"Debora", "12345"},
+		{"Bob", "1345"},
+		{"Sandra", "12"},
+	}
+
+	out, err := json.MarshalIndent(users, "", "\t")
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Println(string(out))
 }

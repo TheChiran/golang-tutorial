@@ -5,24 +5,22 @@ import (
 	"fmt"
 )
 
-type User struct {
+type user struct {
 	Username string
 	Password string
 }
 
 func main() {
-	users := []User{
-		{"Debora", "12345"},
-		{"Bob", "1345"},
-		{"Sandra", "12"},
-	}
-
-	out, err := json.MarshalIndent(users, "", "\t")
-
+	var jsoninput = []byte("[{\"Username\":\"debora\",\"Password\":\"123456\"},{\"Username\":\"bob\",\"Password\":\"42\"},{\"Username\":\"sandra\",\"Password\":\"33\"}]")
+	var users []user
+	err := json.Unmarshal(jsoninput, &users)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
+	fmt.Println(users)
 
-	fmt.Println(string(out))
+	for _, user := range users {
+		fmt.Println("->", user.Username)
+	}
 }

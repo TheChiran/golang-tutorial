@@ -1,38 +1,27 @@
+// Very basic socket server
+// https://golangr.com/
+
 package main
 
 import (
-	"encoding/json"
+	"bufio"
 	"fmt"
-	"io/ioutil"
+	"net"
 )
 
 func main() {
+	fmt.Println("Start server...")
 
-	// read file
-	data, err := ioutil.ReadFile("./example.json")
-	if err != nil {
-		fmt.Print(err)
+	// listen on port 8000
+	ln, _ := net.Listen("tcp", ":8000")
+
+	// accept connection
+	conn, _ := ln.Accept()
+
+	// run loop forever (or until ctrl-c)
+	for {
+		// get message, output
+		message, _ := bufio.NewReader(conn).ReadString('\n')
+		fmt.Print("Message Received:", string(message))
 	}
-
-	// define data structure
-	type DayPrice struct {
-		USD float32
-		EUR float32
-		GBP float32
-	}
-
-	// json data
-	var obj DayPrice
-
-	// unmarshall it
-	err = json.Unmarshal(data, &obj)
-	if err != nil {
-		fmt.Println("error:", err)
-	}
-
-	// can access using struct now
-	fmt.Printf("USD : %.2f\n", obj.USD)
-	fmt.Printf("EUR : %.2f\n", obj.EUR)
-	fmt.Printf("GBP : %.2f\n", obj.GBP)
-
 }
